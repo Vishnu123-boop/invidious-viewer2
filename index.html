@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invidious Viewer (Yewtu.be)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        .search-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 60%;
+            font-size: 1.1em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1.1em;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .video-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        iframe {
+            width: 80%;
+            height: 450px;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Invidious Viewer (Yewtu.be)</h1>
+        <p>Watch YouTube videos with privacy using Invidious</p>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="video-url" placeholder="Enter YouTube video URL...">
+        <button onclick="loadVideo()">Load Video</button>
+    </div>
+
+    <div class="video-container" id="video-container">
+        <!-- Video will be embedded here -->
+    </div>
+
+    <script>
+        function loadVideo() {
+            var url = document.getElementById("video-url").value;
+            if (url) {
+                // Extract video ID from YouTube URL (assuming standard format)
+                var videoId = url.split('v=')[1].split('&')[0];
+
+                // Build Invidious URL for embedding the video from yewtu.be
+                var invidiousUrl = "https://yewtu.be/watch?v=" + videoId;
+
+                // Embed the video using an iframe
+                var iframe = `<iframe src="${invidiousUrl}" allowfullscreen></iframe>`;
+                document.getElementById("video-container").innerHTML = iframe;
+            } else {
+                alert("Please enter a valid YouTube video URL.");
+            }
+        }
+    </script>
+
+</body>
+
+</html>
